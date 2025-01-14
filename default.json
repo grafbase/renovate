@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    "mergeConfidence:all-badges"
+  ],
+  "timezone": "Europe/Berlin",
+  "schedule": ["after 8pm", "before 6am"],
+  "updateNotScheduled": false,
+  "ignorePaths": ["workspace-hack/**"],
+  "addLabels": ["dependencies"],
+  "gitAuthor": "Nextest Bot <bot@nexte.st>",
+  "packageRules": [
+    {
+      "matchDatasources": ["crate"],
+      "rangeStrategy": "bump"
+    },
+    {
+      "matchDatasources": ["crate"],
+      "matchCurrentValue": "/^\\d+(\\.\\d+)?$/",
+      "rangeStrategy": "update-lockfile"
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  }
+}

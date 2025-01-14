@@ -1,0 +1,36 @@
+name: Renovate
+on:
+  workflow_dispatch:
+    inputs:
+      log-level:
+        description: "Log level"
+        required: true
+        default: "INFO"
+        type: choice
+        options:
+          - "TRACE"
+          - "DEBUG"
+          - "INFO"
+          - "WARN"
+          - "ERROR"
+  schedule:
+    - cron: "0/15 * * * *"
+
+concurrency:
+  # Only let one renovate job run at a time
+  group: renovate
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    env:
+      LOG_LEVEL: ${{ github.event.inputs.log-level || 'INFO' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@e3a862510f27d57a380efb11f0b52ad7e8dbf213 # v41.0.6
+        with:
+          configurationFile: global-config.json
+          token: ${{ secrets.RENOVATE_TOKEN }}
+          env-regex: "^(?:RENOVATE_\\w+|LOG_LEVEL)$"
