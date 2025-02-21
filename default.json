@@ -13,6 +13,13 @@
   "gitAuthor": "Nextest Bot <bot@nexte.st>",
   "packageRules": [
     {
+      "matchManagers": ["cargo"],
+      "matchPackagePatterns": ["*"],
+      "groupName": "All Rust crate updates",
+      "groupSlug": "all-updates",
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
       "matchDatasources": ["crate"],
       "rangeStrategy": "bump"
     },
