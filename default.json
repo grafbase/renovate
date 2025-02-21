@@ -20,6 +20,18 @@
       "matchUpdateTypes": ["minor", "patch"]
     },
     {
+      "matchPackageNames": [
+        "wasmtime",
+        "wasmtime-wasi",
+        "wasmtime-wasi-http"
+      ],
+      "groupName": "Wasmtime major updates",
+      "groupSlug": "wasmtime-major",
+      "separateMajorMinor": false,
+      "enabled": true,
+      "commitMessageSuffix": "[wasmtime-major]"
+    },
+    {
       "matchDatasources": ["crate"],
       "rangeStrategy": "bump"
     },
