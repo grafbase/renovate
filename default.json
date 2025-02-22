@@ -6,18 +6,47 @@
     "mergeConfidence:all-badges"
   ],
   "timezone": "Europe/Berlin",
-  "schedule": ["after 8pm", "before 6am"],
+  "schedule": [
+    "after 8pm",
+    "before 6am"
+  ],
   "updateNotScheduled": false,
-  "ignorePaths": ["crates/grafbase-workspace-hack/**"],
-  "addLabels": ["dependencies"],
+  "ignorePaths": [
+    "crates/grafbase-workspace-hack/**"
+  ],
+  "addLabels": [
+    "dependencies"
+  ],
   "gitAuthor": "Nextest Bot <bot@nexte.st>",
   "packageRules": [
     {
-      "matchManagers": ["cargo"],
-      "matchPackagePatterns": ["*"],
-      "groupName": "All Rust crate updates",
+      "matchManagers": [
+        "cargo"
+      ],
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "groupName": "Rust crate versions",
       "groupSlug": "all-updates",
-      "matchUpdateTypes": ["minor", "patch"]
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    },
+    {
+      "matchManagers": [
+        "gomod"
+      ],
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "groupName": "Go package versions",
+      "groupSlug": "go-updates",
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ]
     },
     {
       "matchPackageNames": [
@@ -25,18 +54,22 @@
         "wasmtime-wasi",
         "wasmtime-wasi-http"
       ],
-      "groupName": "Wasmtime major updates",
-      "groupSlug": "wasmtime-major",
+      "groupName": "Wasmtime",
+      "groupSlug": "wasmtime",
       "separateMajorMinor": false,
       "enabled": true,
-      "commitMessageSuffix": "[wasmtime-major]"
+      "commitMessageSuffix": "[wasmtime]"
     },
     {
-      "matchDatasources": ["crate"],
+      "matchDatasources": [
+        "crate"
+      ],
       "rangeStrategy": "bump"
     },
     {
-      "matchDatasources": ["crate"],
+      "matchDatasources": [
+        "crate"
+      ],
       "matchCurrentValue": "/^\\d+(\\.\\d+)?$/",
       "rangeStrategy": "update-lockfile"
     }
